@@ -4,7 +4,23 @@
 <cfset SdkObject = createObject("component","loginradiussdk")>
 <cfscript>
 try{
-output = SdkObject.loginradiusPostStatus(form.lraccesstoken, form.title, form.url,form.imageurl, form.status, '', form.description);
+lr_url = '';
+if(structkeyexists(form, "url")){
+	lr_url = form.url;
+}
+imageurl = '';
+if(structkeyexists(form, "imageurl")){
+	imageurl = form.imageurl;
+}
+imageurl = '';
+if(structkeyexists(form, "imageurl")){
+	imageurl = form.imageurl;
+}
+description = '';
+if(structkeyexists(form, "description")){
+	description = form.description;
+}
+output = SdkObject.loginradiusPostStatus(form.lraccesstoken, form.title, lr_url, imageurl, form.status, '', description);
 writeDump(output);
 }
 catch (LoginRadiusException e) {
