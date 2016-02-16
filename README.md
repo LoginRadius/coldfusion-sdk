@@ -19,7 +19,7 @@ Please visit [here](http://www.loginradius.com/) for more information.
 
 * [Demo Application](https://github.com/LoginRadius/coldfusion-sdk/tree/master/demo): It contains a basic demo of the SDK
 library
-* [SDK](https://github.com/LoginRadius/coldfusion-sdk/tree/master/SDK): It contains all the sourced compiled SDK.
+* [SDK](https://github.com/LoginRadius/coldfusion-sdk/tree/master/sdk): It contains all the sourced compiled SDK.
 
 
 ## Documentation
