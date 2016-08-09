@@ -195,18 +195,6 @@
 <cfreturn loginradiusGetReponse(cfhttp)>
 </cffunction>
 
-
-<cfhttp url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
-<cfhttpparam name="appkey" value="#arguments.raas_api_key#" type="URL">
-<cfhttpparam name="appsecret" value="#arguments.raas_secret_key#" type="URL">
-<cfhttpparam name="username" value="#arguments.username#" type="URL">
-<cfhttpparam name="password" value="#arguments.password#" type="URL">
-</cfhttp>
-
-<!--- Get Response --->
-<cfreturn loginradiusGetReponse(cfhttp)>
-</cffunction> 
-
 <cffunction name="loginradiusSetStatus"
 hint="Block or un-block a user using the users unique UserID (UID).">
 
@@ -610,7 +598,7 @@ query = "<Field Name='Gender' ComparisonOperator='Equal'>F</Field>";
 --->
 
 <cffunction name="loginradiusRetrieveCustomObjectsByQuery"
-hint="Retrieve all of the custom objects by an object’s unique ID and filtered by a query.">
+hint="Retrieve all of the custom objects by an objectÂ’s unique ID and filtered by a query.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
@@ -631,7 +619,7 @@ hint="Retrieve all of the custom objects by an object’s unique ID and filtered b
 </cffunction> 
 
 <cffunction name="loginradiusRetrieveRecordsByObjectId"
-hint="Retrieve all of the custom objects by an object’s unique ID and filtered by a query.">
+hint="Retrieve all of the custom objects by an objectÂ’s unique ID and filtered by a query.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
@@ -649,7 +637,7 @@ hint="Retrieve all of the custom objects by an object’s unique ID and filtered b
 </cffunction> 
 
 <cffunction name="loginradiusRetrieveCustomObjectsByRecordId"
-hint="This API is used to retrieve all of the custom objects by an record’s unique ID.">
+hint="This API is used to retrieve all of the custom objects by an recordÂ’s unique ID.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
@@ -1131,7 +1119,7 @@ query = "<Field Name='Gender' ComparisonOperator='Equal'>F</Field>";
 --->
 
 <cffunction name="loginradiusRetrieveCustomObjectsByQuery"
-hint="Retrieve all of the custom objects by an object’s unique ID and filtered by a query.">
+hint="Retrieve all of the custom objects by an objectÂ’s unique ID and filtered by a query.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
@@ -1152,7 +1140,7 @@ hint="Retrieve all of the custom objects by an object’s unique ID and filtered b
 </cffunction> 
 
 <cffunction name="loginradiusRetrieveRecordsByObjectId"
-hint="Retrieve all of the custom objects by an object’s unique ID and filtered by a query.">
+hint="Retrieve all of the custom objects by an objectÂ’s unique ID and filtered by a query.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
@@ -1170,7 +1158,7 @@ hint="Retrieve all of the custom objects by an object’s unique ID and filtered b
 </cffunction> 
 
 <cffunction name="loginradiusRetrieveCustomObjectsByRecordId"
-hint="This API is used to retrieve all of the custom objects by an record’s unique ID.">
+hint="This API is used to retrieve all of the custom objects by an recordÂ’s unique ID.">
 
 <!--- Define arguments. --->
 <cfargument name="raas_api_key" type="string" required="true" hint="Raas API Key that you got from LoginRadius" />
