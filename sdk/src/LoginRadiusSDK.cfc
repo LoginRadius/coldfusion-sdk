@@ -1,4 +1,4 @@
-<cfcomponent displayname="loginradiussdk" hint="This is the CFC for Customer Identity Management APIS">  
+<cfcomponent displayname="loginradiussdk" hint="This is the CFC for Customer Identity Management APIS" output="false">  
 
   <!--- 
 
@@ -225,7 +225,6 @@
   </cfhttp>
 
   <cfreturn loginradiusGetResponse(cfhttp)>
-
 </cffunction>
 
  
@@ -242,7 +241,6 @@
   <cfreturn loginradiusGetResponse(cfhttp)>
 
 </cffunction>
-
 
 <cffunction name="loginradiusPostStatus" hint="To update the status on the user's wall" output="false">
   <cfargument name="accessToken" type="string" required="true" />
