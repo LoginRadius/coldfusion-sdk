@@ -251,7 +251,7 @@
   <cfargument name="caption" type="string" required="false" default="" />
   <cfargument name="description" type="string" required="false" default="" />
 
-  <cfhttp method="Post"  url="#variables.LR_API_ENDPOINT#/status">
+  <cfhttp method="Post" url="#variables.LR_API_ENDPOINT#/status">
     <cfhttpparam name="access_token" value="#arguments.accessToken#" type="URL">
     <cfhttpparam name="title" value="#arguments.title#" type="URL">
     <cfhttpparam name="url" value="#arguments.url#" type="URL">
@@ -381,7 +381,7 @@ params =  {
   <cfhttp url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/password">
     <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
     <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
-    <cfhttpparam name="userid" value="#arguments.id#" type="URL">
+    <cfhttpparam name="accountid" value="#arguments.id#" type="URL">
   </cfhttp>
 
   <!--- Get Response --->
@@ -499,6 +499,28 @@ params =  {
 </cffunction>
 
 
+<cffunction name="loginradiusAddRemoveEmail" hint="This API is used to add or remove a particular email from one user's account." output="false">
+
+  <!--- Define arguments. --->
+  <cfargument name="accountid" type="string" required="true" />
+  <cfargument name="action" type="string" required="true" hint="add or remove"/>
+  <cfargument name="emailid" type="string" required="true" hint="Email Address to action"/>
+  <cfargument name="emailtype" type="string" required="false" default="Personal" hint="Email Type like 'Business' or Personal"/>
+
+  <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/email">
+    <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
+    <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
+    <cfhttpparam name="accountid" value="#arguments.accountid#" type="URL">
+    <cfhttpparam name="action" value="#arguments.action#" type="URL">
+    <cfhttpparam name="emailid" value="#arguments.emailid#" type="formfield">
+    <cfhttpparam name="emailtype" value="#arguments.emailtype#" type="formfield">
+  </cfhttp>
+
+  <cfreturn loginradiusGetResponse(cfhttp)>
+
+</cffunction>
+
+
 <!--- Example of params (valid json)
 params =  {
   'accountid' = 'abc',
@@ -515,7 +537,7 @@ params =  {
     <cfhttpparam type="header" name="Content-Type" value="application/json" />
     <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
     <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
-    <cfhttpparam  value="#arguments.params#" type="body">
+    <cfhttpparam value="#arguments.params#" type="body">
   </cfhttp>
 
   <cfreturn loginradiusGetResponse(cfhttp)>
@@ -542,7 +564,7 @@ params =  {
 
   <!--- Define arguments. --->
   <cfargument name="uid" type="string" required="true" />
-  <cfhttp  url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
+  <cfhttp url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
     <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
     <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
     <cfhttpparam name="userid" value="#arguments.uid#" type="URL">
@@ -568,7 +590,7 @@ params =  {
     <cfhttpparam type="header" name="Content-Type" value="application/json" />
     <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
     <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
-    <cfhttpparam  value="#arguments.params#" type="body">
+    <cfhttpparam value="#arguments.params#" type="body">
   </cfhttp>
 
   <cfreturn loginradiusGetResponse(cfhttp)>
@@ -611,7 +633,7 @@ params =  {
     <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
     <cfhttpparam name="accountid" value="#arguments.accountid#" type="URL">
     <cfhttpparam name="objectid" value="#arguments.objectid#" type="URL">
-    <cfhttpparam  value="#arguments.params#" type="body">
+    <cfhttpparam value="#arguments.params#" type="body">
   </cfhttp>
 
   <cfreturn loginradiusGetResponse(cfhttp)>
