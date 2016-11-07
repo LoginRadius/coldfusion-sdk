@@ -356,6 +356,28 @@ params =  {
   <cfreturn loginradiusGetResponse(cfhttp)>
 </cffunction> 
 
+<cffunction name="loginradiusUserVerificationEmailResend" hint="This API is used to resend verification to users." output="false">
+
+  <!--- Define arguments. --->
+  <cfargument name="emailid" type="string" required="true" hint="Users email address" />
+  <cfargument name="link" type="string" required="true" hint="Verification Url link address" />
+  <cfargument name="template" type="string" required="false" hint="Verification Email Template" />
+
+  <cfhttp method="Get" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/verificationemail">
+    <cfhttpparam type="header" name="Content-Type" value="application/json" />
+    <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
+    <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
+    <cfhttpparam name="emailid" value="#arguments.emailid#" type="URL">
+    <cfhttpparam name="link" value="#arguments.link#" type="URL">
+    <cfif Len(trim(arguments.template))>
+      <cfhttpparam name="template" value="#arguments.template#" type="URL">
+    </cfif>
+  </cfhttp>
+
+    <!--- Get Response --->
+  <cfreturn loginradiusGetResponse(cfhttp)>
+</cffunction> 
+
 
 <cffunction name="loginradiusDeleteUser" hint="Delete user using the users unique UserID (UID)." output="false">
 
@@ -372,6 +394,24 @@ params =  {
   <cfreturn loginradiusGetResponse(cfhttp)>
 
 </cffunction> 
+
+
+<cffunction name="loginradiusUserProfileByEmail" hint="This API retrieves a copy of user data based on the email address of the user." output="false">
+
+  <!--- Define arguments. --->
+  <cfargument name="email" type="string" required="true" hint ="Email address of user"/>
+
+  <cfhttp method="Get" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
+    <cfhttpparam type="header" name="Content-Type" value="application/json" />
+    <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
+    <cfhttpparam name="appsecret" value="#variables.raas_secret_key#" type="URL">
+    <cfhttpparam name="emailid" value="#arguments.email#" type="URL">
+  </cfhttp>
+
+  <cfreturn loginradiusGetResponse(cfhttp)>
+
+</cffunction>
+
 
 <cffunction name="loginradiusGetHashedPassword" hint="Retrieve the password(hashed) from the user profile associated with the user account" output="false">
 
