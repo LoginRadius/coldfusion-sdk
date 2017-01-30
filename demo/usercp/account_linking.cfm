@@ -10,7 +10,10 @@
 </cfoutput>
 <cfelse>
 
-<cfset LRSdkObject = createObject("component","sdk/loginradiussdk")>
+<cfset LRSdkObject = createObject("component","sdk.loginradiussdk").init(
+        raas_api_key = RAAS_API_KEY,
+        raas_api_secret = RAAS_API_SECRET
+      )>
 
 <cfset userProfileResult = LRSdkObject.loginradiusGetUserProfiledata(form.mtoken)>
 <cfif structkeyexists(userProfileResult, "ID")>
@@ -27,7 +30,7 @@ serializer = new lib.JsonSerializer()
 		.asString( "providerid" )
 	;
 	</cfscript>
-<cfset accountLinkingResult = LRSdkObject.loginradiusAccountLink(RAAS_API_KEY, RAAS_SECRET_KEY, serializer.serialize( accountLinkParams ))>
+<cfset accountLinkingResult = LRSdkObject.loginradiusAccountLink(serializer.serialize( accountLinkParams ))>
 <cfif structkeyexists(accountLinkingResult, "isPosted")>
 <cfif accountLinkingResult.isPosted EQ true>
 <cfset message ='Account Linked Successfully'>

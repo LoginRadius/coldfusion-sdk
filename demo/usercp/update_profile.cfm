@@ -1,6 +1,9 @@
 
 <cfif structkeyexists(form, "lr_update")>
-    <cfset SdkObject = createObject("component","sdk/loginradiussdk")>
+    <cfset SdkObject = createObject("component","sdk.loginradiussdk").init(
+        raas_api_key = RAAS_API_KEY,
+        raas_api_secret = RAAS_API_SECRET
+      )>
         <cfscript>
             serializer = new lib.JsonSerializer()
             .asString( "firstname" )
@@ -27,12 +30,12 @@
             <cfset Params.city ="#form.city#" />
         </cfif>
         <cftry>
-            <cfset Result = SdkObject.loginradiusUpdateProfile(RAAS_API_KEY, RAAS_SECRET_KEY, Session.userProfile.ID, serializer.serialize( Params ))>
+            <cfset Result = SdkObject.loginradiusUpdateUserProfile(Session.userProfile.ID, serializer.serialize( Params ))>
              
                 <cfif structkeyexists(Result, "isPosted")>
                     <cfif Result.isPosted EQ true>
                         <cftry>
-                            <cfset profile = SdkObject.loginradiusGetProfileData(RAAS_API_KEY, RAAS_SECRET_KEY, Session.userProfile.ID)>
+                            <cfset profile = SdkObject.loginradiusGetProfileData(Session.userProfile.ID)>
                                 <cfset Session.userProfile = profile> 
                                     <cfcatch type = "LoginRadiusException"> 
 

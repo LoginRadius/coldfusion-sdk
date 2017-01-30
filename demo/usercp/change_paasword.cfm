@@ -1,12 +1,15 @@
 ﻿<cfif structkeyexists(Session.userProfile, "Uid")>
-<cfset SdkObject = createObject("component","sdk/loginradiussdk")>
+<cfset SdkObject = createObject("component","sdk.loginradiussdk").init(
+        raas_api_key = RAAS_API_KEY,
+        raas_api_secret = RAAS_API_SECRET
+      )>
 <cfscript>
 raas_id ='';
 if(Session.userProfile.Provider == 'raas'){
-	raas_id = Session.userProfile.ID;
+	raas_id = Session.userProfile.Uid;
 }
 else{
-	profileResult = SdkObject.loginradiusGetAccounts(RAAS_API_KEY, RAAS_SECRET_KEY, Session.userProfile.Uid);
+	profileResult = SdkObject.loginradiusGetAccounts(Session.userProfile.Uid);
 	if(IsArray(profileResult)){
 	for ( key in profileResult )  // for-in loop for struct
   {
@@ -15,8 +18,8 @@ raas_Profile_data = 	key;
 
 }
   }
-  if (structkeyexists(raas_Profile_data, "ID")) {
-  raas_id  = raas_Profile_data.ID;
+  if (structkeyexists(raas_Profile_data, "Uid")) {
+  raas_id  = raas_Profile_data.Uid;
   }
 
 	}
@@ -35,7 +38,7 @@ serializer = new lib.JsonSerializer()
     .asString( "oldpassword" )
   ;
   </cfscript>
-<cfset changePasswordResult = SdkObject.loginradiusChangePassword(RAAS_API_KEY, RAAS_SECRET_KEY, raas_id, serializer.serialize( objActress ))>
+<cfset changePasswordResult = SdkObject.loginradiusChangePassword(raas_id, serializer.serialize( objActress ))>
 <cfif structkeyexists(changePasswordResult, "isPosted")>
 <cfif changePasswordResult.isPosted EQ true>
 <cfset message ='Password changed successfully'>

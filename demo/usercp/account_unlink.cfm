@@ -1,5 +1,8 @@
 ﻿<cfif structkeyexists(Session.userProfile, "Uid")>
-<cfset SdkObject = createObject("component","sdk/loginradiussdk")>
+<cfset SdkObject = createObject("component","sdk.loginradiussdk").init(
+        raas_api_key = RAAS_API_KEY,
+        raas_api_secret = RAAS_API_SECRET
+      )>
 
 <cfset accounUnLinkParams = StructNew() />
 <cfset accounUnLinkParams.accountid ="#Session.userProfile.Uid#" />
@@ -15,7 +18,7 @@ serializer = new lib.JsonSerializer()
 		.asString( "providerid" )
 	;
 	</cfscript>
-<cfset accountUnLinkingResult = SdkObject.loginradiusAccountUnLink(RAAS_API_KEY, RAAS_SECRET_KEY, serializer.serialize( accounUnLinkParams ))>
+<cfset accountUnLinkingResult = SdkObject.loginradiusAccountUnLink(serializer.serialize( accounUnLinkParams ))>
 <cfif structkeyexists(accountUnLinkingResult, "isPosted")>
 <cfif accountUnLinkingResult.isPosted EQ true>
 <cfset message ='Account unlinked Successfully'>

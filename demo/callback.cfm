@@ -1,8 +1,10 @@
 
 <cfif !structkeyexists(Session, "user_id")>
 <cfinclude template="usercp/login.cfm">
-<cfelseif structkeyexists(form, "mtoken")>
+<cfelseif structkeyexists(form, "mtoken") AND structkeyexists(form, "value") >
+	<cfif form.value EQ "accountLink">
 <cfinclude template="usercp/account_linking.cfm">
+</cfif>
 <cfelseif structkeyexists(form, "value")>
 <cfif form.value EQ "accountUnLink">
 <cfinclude template="usercp/account_unlink.cfm">

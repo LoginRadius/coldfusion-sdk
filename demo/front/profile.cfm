@@ -53,7 +53,7 @@
 <cfset BirthDate ="" />
 
 <cfif structkeyexists(Session.userProfile, "BirthDate")>
-<cfset BirthDate ="#Session.userProfile.BirthDate#" />
+<cfset BirthDate ="#Replace(Session.userProfile.BirthDate, "/", "-", "all")#" />
 </cfif>
 <label class="lr-input-frame lr-inline">
 <span class="lr-input-label">BirthDate</span>
@@ -69,7 +69,9 @@
 </label>
 <cfset Country ="" />
 <cfif structkeyexists(Session.userProfile, "Country")>
+<cfif structkeyexists(Session.userProfile.Country, "Name")>
 <cfset Country ="#Session.userProfile.Country.Name#" />
+</cfif>
 </cfif>
 <label class="lr-input-frame lr-inline">
 <span class="lr-input-label">Country</span>
