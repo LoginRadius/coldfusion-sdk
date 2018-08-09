@@ -243,7 +243,7 @@
     <cfargument name="caption" type="string" required="false" default="" />
     <cfargument name="description" type="string" required="false" default="" />
 
-    <cfhttp method="Post"  url="#variables.LR_API_ENDPOINT#/status">
+    <cfhttp method="POST"  url="#variables.LR_API_ENDPOINT#/status">
       <cfhttpparam name="access_token" value="#arguments.accessToken#" type="URL">
       <cfhttpparam name="title" value="#arguments.title#" type="URL">
       <cfhttpparam name="url" value="#arguments.url#" type="URL">
@@ -264,7 +264,7 @@
     <cfargument name="subject" type="string" required="false" default=""/>
     <cfargument name="message" type="string" required="false" default="" />
 
-    <cfhttp method="Post"  url="#variables.LR_API_ENDPOINT#/message">
+    <cfhttp method="POST"  url="#variables.LR_API_ENDPOINT#/message">
       <cfhttpparam name="access_token" value="#arguments.accessToken#" type="URL">
       <cfhttpparam name="to" value="#arguments.to#" type="URL">
       <cfhttpparam name="subject" value="#arguments.subject#" type="URL">
@@ -301,7 +301,7 @@
     <cfargument name="emailid" type="string" required="true" hint="Email Address to action"/>
     <cfargument name="emailtype" type="string" required="false" default="Personal" hint="Email Type like 'Business' or Personal"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/email">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/email">
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
       <cfhttpparam name="accountid" value="#arguments.accountid#" type="URL">
@@ -321,7 +321,7 @@
     <cfargument name="accountid" type="string" required="true" />
     <cfargument name="newusername" type="string" required="true" hint="New username"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/setusername">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/setusername">
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
       <cfhttpparam name="accountid" value="#arguments.accountid#" type="URL">
@@ -339,7 +339,7 @@
     <cfargument name="uid" type="string" required="true" hint="unique UserID (UID)" />
     <cfargument name="isblock" type="boolean" required="false" default=true hint="pass false to unblock the user." />
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/status">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/status">
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
       <cfhttpparam name="accountid" value="#arguments.uid#" type="URL">
@@ -354,7 +354,7 @@
 
   params =  “{'emailid' : 'example@domain.com', 'password' : 'xxxxxxxxxxx', 'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m', 'birthdate' : 'MM-DD-YYYY',
    ....................
-   ....................}”
+   ....................}�?
   --->  
   <cffunction name="loginradiusCreateUser" 
   hint="Create a new user on your site. This API bypasses the normal email verification process and manually creates the user for your system.">
@@ -362,7 +362,7 @@
     <!--- Define arguments. --->
     <cfargument name="params" type="any" required="true" hint ="data in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -376,7 +376,7 @@
 
   <!--- Example of params (valid json)
 
- params = “ { 'accountid' : 'xxxxxxxxx', 'password' : 'xxxxxxxxxxx', 'emailid' :'example@domain.com'}”
+ params = “ { 'accountid' : 'xxxxxxxxx', 'password' : 'xxxxxxxxxxx', 'emailid' :'example@domain.com'}�?
   ---> 
   <cffunction name="loginradiusCreateRegistrationProfile"
   hint="Create Raas profile">
@@ -384,7 +384,7 @@
     <!--- Define arguments. --->
     <cfargument name="params" type="any" required="true" hint="data should be in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/profile">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/profile">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -518,7 +518,7 @@
     <cfargument name="uid" type="string" required="true" hint="unique accountid (UID)"/>
     <cfargument name="params" type="any" required="true" hint="data should be in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -540,7 +540,7 @@
     <cfargument name="accountid" type="string" required="true" hint="Raas Account ID"/>
     <cfargument name="params" type="any" required="true" hint="data should be in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -586,7 +586,7 @@
   <!--- Example of params (valid json)
   params =  “{'emailid' : 'example@domain.com', 'password' : 'xxxxxxxxxxx', 'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m', 'birthdate' : 'MM-DD-YYYY',
    ....................
-   ....................}”
+   ....................}�?
   ---> 
   <cffunction name="loginradiusUserRegistration"
   hint="Register user from server side, verification email will be send to provided email address">
@@ -594,7 +594,7 @@
     <!--- Define arguments. --->
     <cfargument name="params" type="any" required="true" hint="Data should be in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/register">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/register">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -607,7 +607,7 @@
   <!--- Example of  params (valid json)
 params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m', 'birthdate' : 'MM-DD-YYYY',
    ....................
-   ....................}”  --->  
+   ....................}�?  --->  
   <cffunction name="loginradiusUpdateUserProfile"
   hint="This API is used to Modify/Update details of an existing user">
 
@@ -615,7 +615,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <cfargument name="userid" type="string" required="true" />
     <cfargument name="params" type="any" required="true" hint ="data in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -629,7 +629,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
   <!--- Example of  params (valid json)
 params =  “{ 'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m', 'birthdate' : 'MM-DD-YYYY',
    ....................
-   ....................}”  --->  
+   ....................}�?  --->  
   <cffunction name="loginradiusUpdateAccountProfile"
   hint="This API updates an existing Account information in your Cloud Storage with the specified account based on the account ID(UID).">
 
@@ -637,7 +637,7 @@ params =  “{ 'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'
     <cfargument name="accountId" type="string" required="true" />
     <cfargument name="params" type="any" required="true" hint ="data in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/edit">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/edit">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -651,7 +651,7 @@ params =  “{ 'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'
   <!--- Example of  params (valid json)
 params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m', 'birthdate' : 'MM-DD-YYYY',
    ....................
-   ....................}”
+   ....................}�?
   --->  
   <cffunction name="loginradiusUpdateProfileByAccessToken"
   hint="API updates the user profile by the access token, It meant to fill in the required fields of user profile.">
@@ -662,7 +662,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <cfargument name="template" type="string" required="false" default="" hint ="email template name" />
      <cfargument name="emailverificationurl" type="string" required="false" default="" hint ="URL where email verification will be handled" />
    
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/update">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/update">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -676,7 +676,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
   </cffunction>
 
   <!--- Example of params (valid json)
-  params = “ {'accountid' : 'abc', 'provider' : 'xyz','providerid’:'xyz'}”
+  params = “ {'accountid' : 'abc', 'provider' : 'xyz','providerid’:'xyz'}�?
   ---> 
   <cffunction name="loginradiusAccountLink"
   hint="Link a user account with a specified providers user account.">
@@ -684,7 +684,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <!--- Define arguments. --->
     <cfargument name="params" type="any" required="true" hint="Data should ne in json format"/>
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/link">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/link">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -695,7 +695,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
   </cffunction> 
 
   <!--- Example of params (valid json)
-  params =  “{'accountid' : 'abc', 'provider' : 'xyz', 'providerid':'xyz'}”
+  params =  “{'accountid' : 'abc', 'provider' : 'xyz', 'providerid':'xyz'}�?
   ---> 
   <cffunction name="loginradiusAccountUnLink"
   hint="Unlink a user account with a specified providers user account.">
@@ -703,7 +703,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <!--- Define arguments. --->
     <cfargument name="params" type="any" required="true" />
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/unlink">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/unlink">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -715,7 +715,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
   </cffunction> 
 
   <!--- Example of params (valid json)
-  params = “{  'oldusername' : 'abc', 'newusername' : 'xyz'}”
+  params = “{  'oldusername' : 'abc', 'newusername' : 'xyz'}�?
   ---> 
   <cffunction name="loginradiusChangeUsername"
   hint="This API is used for changing user name by account Id.">
@@ -724,7 +724,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <cfargument name="accountId" type="string" required="true" hint="Account ID, UID"/>
     <cfargument name="params" type="any" required="true" />
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/changeusername">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/changeusername">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -809,7 +809,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
      <cfargument name="welcomeEmailTemplate" type="string" required="false" default = ":welcomeEmailTemplate" hint="Welcome Email email template name."/>
    
    <cfset params = "{'password' : '#arguments.password#'}">
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password/reset">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/account/password/reset">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -848,7 +848,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <cfargument name="objectid" type="string" required="true" hint="LoginRadius Custom Object ID"/>
     <cfargument name="params" type="any" required="true" hint= "Valid JSON obj as per your schema" />
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/customObject/upsert">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/customObject/upsert">
       <cfhttpparam type="header" name="Content-Type" value="application/json" />
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
@@ -985,7 +985,7 @@ params =  “{'firstname' : 'firstname', 'lastname' : 'last name',  'gender' :'m
     <cfargument name="accountid" type="string" required="true" hint="Uniques user id (Uid)" />
     <cfargument name="isblock" type="boolean" required="false" default=true hint="pass false to unblock the customobjects." />
 
-    <cfhttp method="Post" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/customObject/status">
+    <cfhttp method="POST" url="#variables.LR_USER_REG_API_ENDPOINT#/raas/v1/user/customObject/status">
       <cfhttpparam name="appkey" value="#variables.raas_api_key#" type="URL">
       <cfhttpparam name="appsecret" value="#variables.raas_api_secret#" type="URL">
       <cfhttpparam name="objectid" value="#arguments.objectid#" type="URL">
