@@ -1,10 +1,7 @@
+# LoginRadius ColdFusion SDK
 
-LoginRadius ColdFusion SDK
-==========
 
 ![Home Image](http://docs.lrcontent.com/resources/github/banner-1544x500.png)
-
------------------------------------------------
 
 ## Introduction ##
 
@@ -27,7 +24,7 @@ library
 
 ## Documentation
 
-* [Getting Started](http://apidocs.loginradius.com/docs/coldfusion) - Everything you need to begin using this SDK.
+* [Getting Started](https://docs.loginradius.com/api/v2/deployment/sdk-libraries/coldfusion-library) - Everything you need to begin using this SDK.
 
 
 General documentation regarding the Coldfusion REST API and related flows can be found on the [LoginRadius API Documentations](http://apidocs.loginradius.com/) site. 
