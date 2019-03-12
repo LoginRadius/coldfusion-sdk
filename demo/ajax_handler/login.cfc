@@ -31,10 +31,11 @@
 <cffunction name="loginByEmail" access="remote" output="true" returntype="struct" returnformat="json" hint="This API is used to create an account.">
     <cfargument name="email" type="string" required="true" hint="email"/>
     <cfargument name="password" type="string" required="true" hint="password"/>
+    <cfargument name="verificationurl" type="string" required="false" default="" hint="verification url"/>
 
     <cfset payload = "{'Email': '#arguments.email#', 'Password': '#arguments.password#'}">
     <cftry>
-    <cfset result = authObject.loginByEmail(payload)>
+    <cfset result = authObject.loginByEmail(payload, arguments.verificationurl)>
     <cfset stcRetVal["data"] = result>
     <cfset stcRetVal["status"] = "success">
    
@@ -80,7 +81,7 @@
     <cfargument name="verificationurl" type="string" required="true" hint="verification url"/>
    
     <cftry>
-    <cfset result = authObject.passwordLessLoginByEmail(arguments.email, arguments.verificationurl)>
+    <cfset result = authObject.passwordLessLoginByEmail(arguments.email, '', arguments.verificationurl)>
       <cfif structkeyexists(result, "IsPosted")>
           <cfset stcRetVal["message"] = "One time login link has been sent to your provided email id, check email for further instruction.">
           <cfset stcRetVal["status"] = "success">
@@ -189,9 +190,7 @@
     <cfset message ='#cfcatch.detail#'> 
     <cfset stcRetVal["message"] = message>
     <cfset stcRetVal["status"] = "error">  
-    </cfcatch>
-    </cftry>
-
+    </cfcatch></cftry>
  <cfreturn stcRetVal />
  </cffunction>
 

@@ -1,0 +1,1 @@
+<cfset THIS.javaSettings = {LoadPaths = ["/lib"],reloadOnChange=true,watchInterval=30}/>

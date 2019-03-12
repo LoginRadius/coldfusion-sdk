@@ -121,6 +121,7 @@ function handleLogin() {
             data: $.param({
                 email: $("#minimal-login-email").val(),
                 password: $("#minimal-login-password").val(),
+                verificationurl: domainName,
                 method: "loginByEmail"
             }),
 
